@@ -2,7 +2,7 @@
 	<div>
 		<input type="file" @change="upload($event)">
 
-		<Pager :total="13"></Pager>
+		<Pager :total="111"></Pager>
 	</div>
 </template>
 

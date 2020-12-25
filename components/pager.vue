@@ -10,19 +10,26 @@
 <script>
 export default {
 	name: 'pager',
-	props: ['total'],
+	props: {
+		total: {
+			type: Number,
+		},
+		size: {
+			type: Number,
+			default: 10,
+		},
+	},
 	data() {
 		return {
 			step: 5,
 			cache: 0,
 			current: 1,
 			addPage: 0,
-			pageSize: 2,
 		};
 	},
 	created() {
 		console.log(this.total);
-		const num = Math.ceil(this.total / this.pageSize);
+		const num = Math.ceil(this.total / this.size);
 		this.cache = num >= this.step ? this.step : num;
 		console.log(num);
 	},
@@ -38,7 +45,7 @@ export default {
 				}
 			} else {
 				if (this.current >= this.cache) {
-					const num = Math.ceil(this.total / this.pageSize);
+					const num = Math.ceil(this.total / this.size);
 					if (this.addPage >= num - this.step) return;
 					this.addPage++;
 				} else {
