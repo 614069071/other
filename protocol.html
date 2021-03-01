@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    function _ip(str) {
+      var reg = /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/;
+      return reg.test(str);
+    }
+
+    console.log(_ip('255.255.25'))
+
+  </script>
+
+
+
+</body>
+
+</html>

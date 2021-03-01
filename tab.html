@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .tab-wrapper {
+      display: flex;
+      position: relative;
+    }
+
+    .tab-item {
+      width: 100px;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .tab-item>span {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid red;
+      border-left: none;
+    }
+
+    .tab-item:first-child span {
+      border: 1px solid red;
+
+    }
+
+    .tab-item+.tab-item>span {
+      border-right: 1px solid red;
+    }
+
+    .tab-item input:checked+div {
+      display: block;
+    }
+
+    .tab-item>div {
+      width: 300px;
+      height: 300px;
+      background-color: #eee;
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="tab-wrapper">
+    <label class="tab-item">
+      <span>1</span>
+      <input type="radio" name="tab" value="1" hidden="hidden" checked>
+      <div>1</div>
+    </label>
+
+    <label class="tab-item">
+      <span>2</span>
+      <input type="radio" name="tab" value="2" hidden="hidden">
+      <div>2</div>
+    </label>
+    <label class="tab-item">
+      <span>3</span>
+      <input type="radio" name="tab" value="3" hidden="hidden">
+      <div>3</div>
+    </label>
+
+  </div>
+</body>
+
+</html>
