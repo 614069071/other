@@ -63,7 +63,7 @@ export default {
 		},
 		// 获取上个月份显示天数
 		getPrevMonthDays([year, mouth]) {
-			const cretMonthDate = new Date(year, mouth, 0);
+			const cretMonthDate = new Date(year, mouth, 1);
 			const week = cretMonthDate.getDay();
 
 			if (mouth === 0) {
@@ -77,7 +77,7 @@ export default {
 			const days = prevMonthDate.getDate();
 			const arr = [];
 
-			for (let i = week; i >= 0; i--) {
+			for (let i = week - 1; i >= 0; i--) {
 				arr.push(days - i);
 			}
 
