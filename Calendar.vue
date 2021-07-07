@@ -18,11 +18,11 @@
 
 		<main class="calendar-container-wrapper">
 			<!-- 上个月 -->
-			<span class="prev-item" v-for="(item,i) in prevDateColle" :key="'prev' + i">{{item}}</span>
+			<span class="prev-item" v-for="(item,i) in prevDateColle" :key="'prev' + i" @click="prevCheckDate(item)">{{item}}</span>
 			<!-- 当前月 -->
-			<span class="cret-item" :class="{'is-check':item === currentDay}" v-for="(item,i) in cretDateColle" :key="'cret' + i">{{item}}</span>
+			<span class="cret-item" :class="{'is-check':item === currentDay}" v-for="(item,i) in cretDateColle" :key="'cret' + i" @click="cretCheckDate(item)">{{item}}</span>
 			<!-- 下个月 -->
-			<span class="next-item" v-for="(item,i) in nextDateColle" :key="'next' +i">{{item}}</span>
+			<span class="next-item" v-for="(item,i) in nextDateColle" :key="'next' +i" @click="nextCheckDate(item)">{{item}}</span>
 		</main>
 	</div>
 </template>
@@ -63,7 +63,7 @@ export default {
 		},
 		// 获取上个月份显示天数
 		getPrevMonthDays([year, mouth]) {
-			const cretMonthDate = new Date(year, mouth, 1);
+			const cretMonthDate = new Date(year, mouth, 0);
 			const week = cretMonthDate.getDay();
 
 			if (mouth === 0) {
@@ -73,11 +73,11 @@ export default {
 				mouth -= 1;
 			}
 
-			const prevMonthDate = new Date(year, mouth, 0);
+			const prevMonthDate = new Date(year, mouth + 1, 0);
 			const days = prevMonthDate.getDate();
 			const arr = [];
 
-			for (let i = week; i > 0; i--) {
+			for (let i = week; i >= 0; i--) {
 				arr.push(days - i);
 			}
 
@@ -121,6 +121,7 @@ export default {
 
 			this.currentYear = year;
 			this.currentMouth = month;
+			this.currentDay = 1;
 			this.renderCalendar([year, month]);
 		},
 		nextMonth() {
@@ -136,7 +137,31 @@ export default {
 
 			this.currentYear = year;
 			this.currentMouth = month;
-			this.renderCalendar([year, month]);
+			this.currentDay = 1;
+			this.renderCalendar([this.currentYear, this.currentMouth]);
+		},
+		prevCheckDate(v) {
+			this.currentDay = v;
+
+			if (this.currentMouth === 0) {
+				this.currentYear -= 1;
+			}
+			this.currentMouth -= 1;
+			this.renderCalendar([this.currentYear, this.currentMouth]);
+		},
+		cretCheckDate(v) {
+			this.currentDay = v;
+		},
+		nextCheckDate(v) {
+			this.currentDay = v;
+
+			if (this.currentMouth === 11) {
+				this.currentYear += 1;
+				this.currentMouth = 0;
+			} else {
+				this.currentMouth += 1;
+			}
+			this.renderCalendar([this.currentYear, this.currentMouth]);
 		},
 	},
 };
@@ -163,6 +188,8 @@ export default {
 }
 
 .date-header-wrapper .current-date-wrapper {
+	width: 130px;
+	text-align: center;
 	margin: 0 100px;
 	font-size: 18px;
 }
