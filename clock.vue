@@ -43,7 +43,7 @@ export default {
 	},
 	methods: {
 		initTime() {
-			new Promise((resolve) => {
+			return new Promise((resolve) => {
 				const date = new Date();
 				const secound = date.getSeconds();
 				const minute = date.getMinutes();
@@ -52,6 +52,7 @@ export default {
 				const mouth = date.getMonth();
 				const year = date.getFullYear();
 
+				this.currentMonths = new Date(year, mouth + 1, 0).getDate();
 				this.secoundCount = secound * -6;
 				this.minuteCount = minute * -6;
 				this.hourCount = hour * -15;
@@ -116,23 +117,23 @@ body {
 }
 
 .minutes {
-	width: 620px;
-	height: 620px;
+	width: 610px;
+	height: 610px;
 }
 
 .hours {
-	width: 470px;
-	height: 470px;
+	width: 480px;
+	height: 480px;
 }
 
 .days {
-	width: 320px;
-	height: 320px;
+	width: 350px;
+	height: 350px;
 }
 
 .months {
-	width: 170px;
-	height: 170px;
+	width: 220px;
+	height: 220px;
 }
 
 .minute-item,
