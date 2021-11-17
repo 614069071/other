@@ -2,7 +2,7 @@
 	<div class='calendar-wrapper'>
 		<header class="date-header-wrapper">
 			<span class="switch left" @click="prevMonth"></span>
-			<span class="current-date-wrapper">{{currentYear}}年{{currentMouth + 1}}月{{currentDay}}日</span>
+			<span class="current-date-wrapper">{{currentYear}}年{{(Number(currentMouth + 1) > 9 ? '':'0') + (currentMouth + 1)}}月{{(Number(currentDay) > 9 ? '':'0')+currentDay}}日</span>
 			<span class="switch right" @click="nextMonth"></span>
 		</header>
 
