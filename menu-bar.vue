@@ -85,7 +85,7 @@ export default defineComponent({
       routers.map((router,i) =>
         router.children && router.children.length ? (
           <a-sub-menu key={`${idx}-${i}`} v-slots={{ title: () => router.name, icon: () => h(compile(`<${router.meta.icon} />`)) }}>
-            {middle(router.children)}
+            {middle(router.children,`${idx}-${i}`)}
           </a-sub-menu>
         ) : (
           <a-menu-item key={r`${idx}-${i}`}>{router.name}</a-menu-item>
