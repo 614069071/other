@@ -81,14 +81,14 @@ const routes = [
 export default defineComponent({
   name: "menu-bar",
   setup() {
-    const middle = routers =>
-      routers.map(router =>
+    const middle = (routers,idx = '0') =>
+      routers.map((router,i) =>
         router.children && router.children.length ? (
-          <a-sub-menu key={router.name} v-slots={{ title: () => router.name, icon: () => h(compile(`<${router.meta.icon} />`)) }}>
+          <a-sub-menu key={`${idx}-${i}`} v-slots={{ title: () => router.name, icon: () => h(compile(`<${router.meta.icon} />`)) }}>
             {middle(router.children)}
           </a-sub-menu>
         ) : (
-          <a-menu-item key={router.name}>{router.name}</a-menu-item>
+          <a-menu-item key={r`${idx}-${i}`}>{router.name}</a-menu-item>
         )
       );
 
